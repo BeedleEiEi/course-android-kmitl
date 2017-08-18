@@ -21,7 +21,7 @@
             android:layout_marginLeft="260dp"
             android:layout_weight="1"
             android:background="@android:color/holo_red_dark"
-            android:gravity=""
+            android:gravity="center"
             android:text="Hello"
             android:textAlignment="center"
             android:textColor="#000000" />
