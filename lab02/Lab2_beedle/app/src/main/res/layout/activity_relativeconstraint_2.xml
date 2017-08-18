@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent" android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/textView14"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:text="Hello"
+        android:gravity="center"
+        android:background="#FF0000"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView15"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:text="Hello"
+        android:gravity="center"
+        android:background="@android:color/holo_orange_light"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView26"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Hello" />
+
+    <TextView
+        android:id="@+id/textView25"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Hello"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true" />
+
+    <TextView
+        android:id="@+id/textView32"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_alignLeft="@+id/textView29"
+        android:layout_alignParentBottom="true"
+        android:layout_alignStart="@+id/textView29"
+        android:background="@android:color/holo_orange_light"
+        android:gravity="center"
+        android:text="Hello" />
+
+    <TextView
+        android:id="@+id/textView31"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Hello"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView30"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:background="@android:color/holo_orange_light"
+        android:gravity="center"
+        android:text="Hello"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignTop="@+id/textView29" />
+
+    <TextView
+        android:id="@+id/textView29"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:background="#FF0000"
+        android:gravity="center"
+        android:text="Hello"
+        android:layout_alignBottom="@+id/textView15"
+        android:layout_alignLeft="@+id/textView28"
+        android:layout_alignStart="@+id/textView28" />
+
+    <TextView
+        android:id="@+id/textView28"
+        android:layout_width="120dp"
+        android:layout_height="150dp"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:background="@android:color/holo_orange_light"
+        android:gravity="center"
+        android:text="Hello" />
+
+
+</RelativeLayout>
