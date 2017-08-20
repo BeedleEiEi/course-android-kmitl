@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="6"
+
+
+    >
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/buttonApps"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+
+            android:orientation="horizontal"
+            android:text="APPS"
+            android:weightSum="1" />
+
+        <Button
+            android:id="@+id/buttonGames"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="GAMES"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <Button
+            android:id="@+id/buttonMovies"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="MOVIES"
+            android:weightSum="1" />
+
+        <Button
+            android:id="@+id/buttonBooks"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="BOOKS"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/textRacing"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="Beat the Record"
+            android:gravity="center"
+            android:lines="2"
+            android:maxLines="2"
+            android:orientation="horizontal"
+            android:text="Racing Games \n Beat the Records!"
+
+            android:weightSum="1" />
+
+
+        <Button
+            android:id="@+id/buttonMore"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="More"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:weightSum="2"
+
+        >
+
+
+        <Button
+            android:id="@+id/buttonPic"
+            android:layout_width="200dp"
+            android:layout_height="150dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="More"
+            android:weightSum="1" />
+
+        <TextView
+            android:id="@+id/buttonCSR"
+            android:layout_width="187dp"
+            android:layout_height="match_parent"
+            android:gravity="center_horizontal"
+            android:lines="2"
+            android:maxLines="2"
+            android:orientation="horizontal"
+            android:text="CSR Racing \n *****"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/textNew"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="3"
+            android:maxLines="3"
+            android:orientation="horizontal"
+            android:text="New + Updated Games \n New recommendations every week!"
+
+            android:weightSum="1" />
+
+
+        <Button
+            android:id="@+id/buttonMore2"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="100dp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="More"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/buttonApps3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="GAMES"
+            android:weightSum="1" />
+
+        <Button
+            android:id="@+id/buttonApps4"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="GAMES"
+            android:weightSum="1" />
+
+        <Button
+            android:id="@+id/buttonApps5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:text="GAMES"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
