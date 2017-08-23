@@ -6,13 +6,121 @@
     android:layout_height="match_parent"
     tools:context="my_test.beedle.day2_homework.MainActivity">
 
+    <ImageView
+        android:id="@+id/imageView"
+        android:layout_width="680dp"
+        android:layout_height="583dp"
+        app:srcCompat="@mipmap/bg"
+        tools:layout_editor_absoluteX="-148dp"
+        tools:layout_editor_absoluteY="-77dp" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        android:layout_width="115dp"
+        android:layout_height="103dp"
+        app:srcCompat="@mipmap/logo"
+        tools:layout_editor_absoluteX="9dp"
+        tools:layout_editor_absoluteY="-1dp" />
+
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Hello World!"
+        android:id="@+id/editText"
+        android:textSize="14dp"
+        android:layout_width="145dp"
+        android:layout_height="38dp"
+        android:gravity="center"
+        android:text="Reimagined, with over \n 30,000 new topics."
+        android:textColor="@android:color/background_light"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.455"
+        tools:layout_editor_absoluteY="214dp"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="180dp"
+        android:layout_height="29dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:gravity="center"
+        android:layout_marginTop="8dp"
+        android:text="A New Flipboard"
+        android:textColor="@android:color/background_light"
+        android:background="@android:color/darker_gray"
+        android:textSize="20dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.37"
+        tools:layout_editor_absoluteY="177dp"
+        app:layout_constraintHorizontal_bias="0.505" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="185dp"
+        android:layout_height="50dp"
+        android:text="SEE NEW TOPICS"
+        android:gravity="center"
+        android:textColor="@android:color/background_light"
+        android:background="@android:color/holo_red_dark"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.82"
+        app:layout_constraintHorizontal_bias="0.502" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="47dp"
+        android:layout_height="23dp"
+        android:text="Skip"
+        android:gravity="center"
+        android:textColor="@android:color/background_light"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.903"
+        app:layout_constraintHorizontal_bias="0.501" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="353dp"
+        android:layout_height="19dp"
+        android:text="By continuing, you accept the Terms of Use and Privacy."
+        android:gravity="center"
+        android:textColor="@android:color/background_light"
+        android:background="@android:color/darker_gray"
+        android:layout_marginLeft="8dp"
+        app:layout_constraintLeft_toLeftOf="parent"
+        android:layout_marginRight="8dp"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginBottom="8dp"
+        app:layout_constraintVertical_bias="0.983"
+        app:layout_constraintHorizontal_bias="0.471"
+        tools:layout_editor_absoluteY="476dp" />
+
 
 </android.support.constraint.ConstraintLayout>

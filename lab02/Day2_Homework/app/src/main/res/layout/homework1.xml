@@ -1,0 +1,235 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:weightSum="6"
+
+
+    >
+
+
+
+        <android.support.constraint.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+
+            >
+
+
+            <Button
+                android:id="@+id/buttonApps"
+                android:layout_width="150dp"
+                android:layout_height="49dp"
+                android:layout_marginBottom="8dp"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/holo_green_dark"
+                android:drawableLeft="@mipmap/ic_launcher"
+                android:orientation="horizontal"
+                android:text="APPS"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.0"
+                android:layout_marginStart="16dp" />
+
+            <Button
+                android:id="@+id/buttonGames"
+                android:layout_width="150dp"
+                android:layout_height="49dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginTop="8dp"
+                android:background="@android:color/holo_green_dark"
+                android:drawableLeft="@mipmap/joyico"
+
+                android:orientation="horizontal"
+                android:text="GAMES"
+                android:textColor="@android:color/background_light"
+                app:layout_constraintBottom_toBottomOf="@+id/buttonApps"
+                app:layout_constraintLeft_toRightOf="@+id/buttonApps"
+                app:layout_constraintTop_toTopOf="@+id/buttonApps"
+                app:layout_constraintVertical_bias="1.0"
+                android:layout_marginStart="22dp" />
+
+
+        </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/textRacing"
+            android:layout_width="200dp"
+            android:layout_height="50dp"
+            android:layout_alignParentLeft="true"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:contentDescription="Beat the Record"
+            android:gravity="center"
+            android:lines="2"
+            android:maxLines="2"
+            android:orientation="horizontal"
+            android:text="Racing Games \n Beat the Records!"
+
+            android:weightSum="1"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp"
+            android:layout_marginStart="8dp" />
+
+
+        <Button
+            android:id="@+id/buttonMore"
+            
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginBottom="8dp"
+            android:background="@android:color/holo_green_dark"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="More"
+            android:weightSum="1"
+            app:layout_constraintBottom_toBottomOf="@+id/textRacing"
+            app:layout_constraintTop_toTopOf="@+id/textRacing"
+            app:layout_constraintVertical_bias="1.0"
+            app:layout_constraintLeft_toRightOf="@+id/textRacing"
+            android:layout_marginLeft="60dp" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@android:color/background_light"
+        android:weightSum="2"
+
+        >
+
+
+        <Button
+            android:id="@+id/buttonPic"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:drawableLeft="@mipmap/CSR1"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            android:layout_marginLeft="8dp"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_marginBottom="8dp" />
+
+        <TextView
+            android:id="@+id/buttonCSR"
+            android:layout_width="153dp"
+            android:layout_height="128dp"
+            android:drawableRight="@mipmap/CSR2"
+            android:gravity="center_horizontal"
+            android:orientation="horizontal"
+            android:weightSum="1"
+            tools:layout_editor_absoluteX="150dp"
+            app:layout_constraintTop_toTopOf="@+id/buttonPic"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/buttonPic"
+            android:layout_marginBottom="8dp" />
+
+    </android.support.constraint.ConstraintLayout>
+
+    <android.support.constraint.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:weightSum="2">
+
+        <TextView
+            android:id="@+id/textNew"
+            android:layout_width="241dp"
+            android:layout_height="58dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:gravity="center"
+            android:lines="3"
+            android:maxLines="3"
+            android:orientation="horizontal"
+            android:text="New + Updated Games \n New recommendations every week!"
+
+            android:weightSum="1"
+            tools:layout_editor_absoluteY="4dp"
+            tools:layout_editor_absoluteX="0dp" />
+
+
+        <Button
+            android:id="@+id/buttonMore2"
+            android:layout_width="70dp"
+            android:layout_height="40dp"
+            android:background="@android:color/holo_green_dark"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:text="More"
+            android:weightSum="1"
+            app:layout_constraintTop_toTopOf="@+id/textNew"
+            android:layout_marginTop="5dp"
+            app:layout_constraintBottom_toBottomOf="@+id/textNew"
+            android:layout_marginBottom="8dp"
+            app:layout_constraintLeft_toRightOf="@+id/textNew"
+            android:layout_marginLeft="28dp"
+            app:layout_constraintVertical_bias="0.4" />
+
+
+    </android.support.constraint.ConstraintLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:weightSum="3">
+
+
+        <ImageButton
+            android:id="@+id/buttonApps3"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:srcCompat="@mipmap/UNO"
+            android:background="@android:color/background_light"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1" />
+
+        <ImageButton
+            android:id="@+id/buttonApps4"
+            app:srcCompat="@mipmap/jump"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1" />
+
+        <ImageButton
+            android:id="@+id/buttonApps5"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@android:color/background_light"
+            app:srcCompat="@mipmap/UNO"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="1" />
+
+
+    </LinearLayout>
+
+
+</LinearLayout>
