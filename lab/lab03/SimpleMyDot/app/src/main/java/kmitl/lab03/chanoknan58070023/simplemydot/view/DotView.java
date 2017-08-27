@@ -6,14 +6,22 @@ import android.graphics.Color;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.view.MotionEvent;
 import android.view.View;
+
+import java.util.ArrayList;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dot;
 
 
 public class DotView extends View {
+
     public void setDot(Dot dot) {
         this.dot = dot;
+    }
+
+    public void setDot(ArrayList<Dot> listDot) {
+        this.listDot = listDot;
     }
 
     public Dot getDot() {
@@ -23,13 +31,24 @@ public class DotView extends View {
 
     private Dot dot;
     private Paint paint;
+    private ArrayList<Dot> listDot; //Create Array for dot
+    private OnTouchListener onTouch;
+
+    @Override
+    public boolean onTouchEvent(MotionEvent event) {
+        return super.onTouchEvent(event);
+    }
 
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-        paint.setColor(Color.RED);
-        if (this.dot != null) {
-            canvas.drawCircle(this.dot.getCenterX(), this.dot.getCenterY(), 30, paint);
+
+//        System.out.println(listDot + "  , at DotView");
+        if (listDot != null) {
+            for (Dot dot : listDot) {
+                paint.setColor(dot.getColor());
+                canvas.drawCircle(dot.getCenterX(), dot.getCenterY(), dot.getRadius(), paint);
+            }
         }
     }
 

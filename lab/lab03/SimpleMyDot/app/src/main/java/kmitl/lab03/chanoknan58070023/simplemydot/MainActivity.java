@@ -2,9 +2,11 @@ package kmitl.lab03.chanoknan58070023.simplemydot;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dot;
@@ -14,33 +16,62 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
 
     private DotView dotView;
     private Dot dot;
+    private ArrayList<Dot> listDot;
+    private ArrayList<Dot> listDotTouch;
+    private int color;
+    private float eXis, eYis;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        listDot = new ArrayList<>();
         dotView = (DotView) findViewById(R.id.dotView);
-        dot = new Dot(this, 0, 0, 30);
+        dotView.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                System.out.println("Touched");
+                eXis = event.getX();
+                eYis = event.getY();
+                addDot();
+//                System.out.println(listDot + "  , at MainAct Touched"); //add in
+                return true;
+            }
+        });
     }
-
     public void onRandomDot(View view) {
+
+        dot = new Dot(this, 0, 0, 30);
         Random rand = new Random();
-        int centerX = rand.nextInt(500);
-        int centerY = rand.nextInt(500);
-        //new Dot(this, centerX, centerY, 50); //this ในที่นี้เป็นตัวที่ implements มาคือ Dot.onDotChangedListener ซึ่งในนี้ประกาศรับ Listener
+        dot.setColor();
+        int centerX = rand.nextInt(830) + 30;
+        int centerY = rand.nextInt(1200) + 30;
         this.dot.setCenterX(centerX);
         this.dot.setCenterY(centerY);
+        listDot.add(dot);
+//        System.out.println(listDot + "  , at MainAct"); //add in
+    }
 
+    public void addDot(){
+        dot = new Dot(this, 0, 0, 80);
+        Random rand = new Random();
+        dot.setColor();
+        float centerX = eXis;
+        float centerY = eYis;
+        dot.setCenterX((int) centerX);
+        dot.setCenterY((int) centerY);
+        listDot.add(dot);
+    }
+
+    public void onClearDot(View view) {
+
+        this.listDot.clear();
+        dotView.invalidate();
     }
 
     @Override
     public void onDotChanged(Dot dot) {
-        dotView.setDot(dot);
+        dotView.setDot(listDot);
         dotView.invalidate();
-//        TextView centerXTextView = (TextView) findViewById(R.id.centerXTextView); //ประกาศ textview ให้รู้จัก id textView
-//        TextView centerYTextView = (TextView) findViewById(R.id.centerYTextView);
-//        centerXTextView.setText(String.valueOf(dot.getCenterX())); //เซ็ทตัวอักษรของ TextView ให้มีค่าตามตัวแปร centerX
-//        centerYTextView.setText(String.valueOf(dot.getCenterY()));
     }
 }
