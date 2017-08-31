@@ -28,6 +28,8 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
     private float eXis, eYis;
     private float pxis, pyis;
     private int rad = 0;
+    private long startTime;
+    private long stopTime;
 
 
     @Override
@@ -41,14 +43,23 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
             public boolean onTouch(View v, MotionEvent event) {
                 Random rand = new Random();
                 rad = rand.nextInt(70) + 80;
-                if (isOverlap(event.getX(), event.getY(), rad)) {
-                    return true;
-                }
                 if (event.getAction() == MotionEvent.ACTION_DOWN) {
                     eXis = event.getX();
                     eYis = event.getY();
-                    addDot(rad);
+                    startTime = event.getEventTime();
+
                 }
+                if (event.getAction() == MotionEvent.ACTION_UP) {
+                    stopTime = event.getEventTime();
+                    if (stopTime - startTime < 300) {
+                        addDot(rad);
+                    } else {
+                        if (isOverlap(event.getX(), event.getY(), rad)) {
+                            return true;
+                        }
+                    }
+                }
+
                 System.out.println("Touched");
 
                 return true;
@@ -67,14 +78,9 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
                 listDot.remove(dot);
                 dotView.invalidate();
             }
-        }).setNegativeButton("Edit Color", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int id) {
-
-            }
         });
+        alertDialog.show();
     }
-
 
 
     public void onRandomDot(View view) {
@@ -96,6 +102,7 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
             if (distance <= rad) {
                 //alert
                 alertDialog(dot);
+                ;
                 return true;
             }
         }
