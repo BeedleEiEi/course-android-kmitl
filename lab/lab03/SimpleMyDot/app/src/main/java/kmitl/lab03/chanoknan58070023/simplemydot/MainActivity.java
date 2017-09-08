@@ -7,18 +7,16 @@ import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.view.ContextMenu;
-import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
-import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dot;
+import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
 import kmitl.lab03.chanoknan58070023.simplemydot.view.DotView;
 
@@ -49,6 +47,10 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
         dotSerealizable.setColor(Color.RED);
         dotSerealizable.setRadius(30);
 
+        final DotPacelable dotPacelable = new DotPacelable(150,150,50);
+
+
+
 
 
 
@@ -58,6 +60,7 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
                 intent.putExtra("xxx", "もいいですか");
                 intent.putExtra("dotSerializable", dotSerealizable);
+                intent.putExtra("dotPacelable", dotPacelable);
                 startActivity(intent);
                 //เริ่มเปลี่ยนหน้า และทำงานอยู่จนกว่าจะ Finish เพื่อกลับมาหน้าเดิม
             }
