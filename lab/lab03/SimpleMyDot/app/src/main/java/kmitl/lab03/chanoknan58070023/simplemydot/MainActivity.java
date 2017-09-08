@@ -2,6 +2,8 @@ package kmitl.lab03.chanoknan58070023.simplemydot;
 
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -9,12 +11,15 @@ import android.view.ContextMenu;
 import android.view.MenuItem;
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Random;
 
+import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dot;
+import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
 import kmitl.lab03.chanoknan58070023.simplemydot.view.DotView;
 
 public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedListener {
@@ -36,6 +41,29 @@ public class MainActivity extends AppCompatActivity implements Dot.OnDotChangedL
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Button btnOpenActivity = (Button) findViewById(R.id.OpenActivity); //Binding Button
+        final DotSerealizable dotSerealizable = new DotSerealizable();
+        dotSerealizable.setCenterX(150);
+        dotSerealizable.setCenterY(150);
+        dotSerealizable.setColor(Color.RED);
+        dotSerealizable.setRadius(30);
+
+
+
+
+        btnOpenActivity.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(MainActivity.this, SecondActivity.class);
+                intent.putExtra("xxx", "もいいですか");
+                intent.putExtra("dotSerializable", dotSerealizable);
+                startActivity(intent);
+                //เริ่มเปลี่ยนหน้า และทำงานอยู่จนกว่าจะ Finish เพื่อกลับมาหน้าเดิม
+            }
+        });
+
+
         listDot = new ArrayList<>();
         dotView = (DotView) findViewById(R.id.dotView);
         dotView.setOnTouchListener(new View.OnTouchListener() {

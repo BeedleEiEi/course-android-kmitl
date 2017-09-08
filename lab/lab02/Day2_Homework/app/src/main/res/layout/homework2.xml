@@ -10,7 +10,7 @@
         android:id="@+id/imageView"
         android:layout_width="680dp"
         android:layout_height="583dp"
-        app:srcCompat="@mipmap/bg"
+        app:srcCompat="@drawable/bg"
         tools:layout_editor_absoluteX="-148dp"
         tools:layout_editor_absoluteY="-77dp" />
 
@@ -18,7 +18,7 @@
         android:id="@+id/imageButton"
         android:layout_width="115dp"
         android:layout_height="103dp"
-        app:srcCompat="@mipmap/logo"
+        app:srcCompat="@drawable/logo"
         tools:layout_editor_absoluteX="9dp"
         tools:layout_editor_absoluteY="-1dp" />
 
