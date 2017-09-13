@@ -5,18 +5,23 @@ import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.media.MediaPlayer;
 import android.net.Uri;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.Toast;
 
 import java.io.File;
+import java.io.FileInputStream;
+import java.io.IOException;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
@@ -35,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
     private int color;
     private int rad = 0;
     private int positionDot;
-
     private int widthScreen = Resources.getSystem().getDisplayMetrics().widthPixels;
     private int heightScreen = Resources.getSystem().getDisplayMetrics().heightPixels;
     private Bitmap bitmap;
@@ -54,6 +58,15 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         dotSerealizable.setColor(Color.RED);
         dotSerealizable.setRadius(30);
 
+        ImageButton clickMe = (ImageButton) findViewById(R.id.clickMe);
+        clickMe.setOnClickListener(new View.OnClickListener() {
+            final MediaPlayer mp = MediaPlayer.create(context, R.raw.allahu);
+
+            @Override
+            public void onClick(View v) {
+                mp.start();
+            }
+        });
         btnShare.setOnClickListener(new View.OnClickListener() { //When clicked share button
             @Override
             public void onClick(View v) {
