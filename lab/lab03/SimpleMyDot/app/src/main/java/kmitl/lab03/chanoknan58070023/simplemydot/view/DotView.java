@@ -46,48 +46,10 @@ public class DotView extends View {
     private Context context = super.getContext();
     private OnDotViewClickListener onDotViewClickListener;
     private int positionDot = -1;
-    private File filePic;
 
     public interface OnDotViewClickListener {
         void onDotViewClicked(int x, int y);
     }
-
-    public File getFilePic() {
-        return filePic;
-    }
-
-
-
-/*    public Bitmap takeScreenShot(View view) {
-        // configuramos para que la view almacene la cache en una imagen
-        view.setDrawingCacheEnabled(true);
-        view.setDrawingCacheQuality(View.DRAWING_CACHE_QUALITY_LOW);
-        view.buildDrawingCache();
-
-        if (view.getDrawingCache() == null) return null; // Verificamos antes de que no sea null
-
-        Bitmap snapshot = Bitmap.createBitmap(view.getDrawingCache());
-        view.setDrawingCacheEnabled(false);
-        view.destroyDrawingCache();
-
-
-        return snapshot;
-    }*/
-
-/*    public static Bitmap getBitmapFromView(View view) {
-        Bitmap returnedBitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
-        Canvas canvas = new Canvas(returnedBitmap);
-        Drawable bgDrawable = view.getBackground();
-        if (bgDrawable != null)
-            bgDrawable.draw(canvas);
-        else
-            //If does not have background drawable, then draw background on the canvas
-            canvas.drawColor(Color.BLACK);
-        // draw the view on the canvas
-        view.draw(canvas);
-        //return the bitmap
-        return returnedBitmap;
-    }*/
 
     public Bitmap createBitmapFromView(View view) {
         Bitmap bitmap = Bitmap.createBitmap(view.getWidth(), view.getHeight(), Bitmap.Config.ARGB_8888);
@@ -96,7 +58,6 @@ public class DotView extends View {
         view.draw(c);
         return bitmap;
     }
-
 
     public void saveBitmap(Bitmap bitmap) {
         // save bitmap to cache directory
@@ -111,16 +72,6 @@ public class DotView extends View {
             e.printStackTrace();
         }
     }
-
-/*
-    public Uri getImageUri(Context inContext, Bitmap inImage) {
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        inImage.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-
-        String path = MediaStore.Images.Media.insertImage(inContext.getContentResolver(), inImage, "Title", null);
-        return Uri.parse(path);
-    }*/
-
 
     public void setOnDotViewClickListener(
             OnDotViewClickListener onDotViewClickListener) {
@@ -144,8 +95,6 @@ public class DotView extends View {
     @Override
     protected void onDraw(Canvas canvas) {
         super.onDraw(canvas);
-
-//        System.out.println(listDot + "  , at DotView");
         if (this.listDot != null) {
             for (Dot dot : listDot.getAllDot()) {
                 paint.setColor(dot.getColor());

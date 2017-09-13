@@ -1,6 +1,7 @@
 package kmitl.lab03.chanoknan58070023.simplemydot;
 
-import android.content.ActivityNotFoundException;
+import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -8,8 +9,6 @@ import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.net.Uri;
-import android.os.Environment;
-import android.provider.MediaStore;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -17,10 +16,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.io.ByteArrayOutputStream;
 import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
@@ -29,8 +25,6 @@ import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dots;
 import kmitl.lab03.chanoknan58070023.simplemydot.view.DotView;
-
-import static kmitl.lab03.chanoknan58070023.simplemydot.R.id.dotView;
 
 public class MainActivity extends AppCompatActivity implements Dots.OnDotsChangeListener, DotView.OnDotViewClickListener {
 
@@ -118,6 +112,16 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) { //When response
+        if (requestCode == 1) {
+            DotPacelable dotParcelable = data.getParcelableExtra("reDotParcelable");
+            if (resultCode == Activity.RESULT_OK) {
+                listDot.getAllDot().get(dotParcelable.getDotPosition()).setColor(dotParcelable.getColor());
+            }
+        }
+    }
+
     public void onRandomDot(View view) {
         Random rand = new Random();
         int centerX = rand.nextInt(830) + 30;
@@ -125,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         Dot dot = new Dot(centerX, centerY, 30);
         dot.setColor();
         listDot.addDot(dot);
-//        System.out.println(listDot + "  , at MainAct"); //add in
     }
 
 
@@ -152,28 +155,28 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
     }
 
     public void alertDialog(final int position) {
-        android.support.v7.app.AlertDialog.Builder alertDialog = new android.support.v7.app.AlertDialog.Builder(context);
+        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
+                this);
+
         alertDialog.setTitle("Select Action");
         alertDialog.setMessage("Choose").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
             @Override
             public void onClick(DialogInterface dialog, int which) {
                 //delete item
                 listDot.removeBy(position);
+                Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_SHORT).show();
             }
-        });
+        })
+                .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        final DotPacelable dotPacelable = new DotPacelable(positionDot, listDot.getAllDot().get(positionDot).getColor(), listDot.getAllDot().get(position).getRadius());
+                        Intent editActIntent = new Intent(MainActivity.this, EditDot.class);
+                        editActIntent.putExtra("dotParcelable", dotPacelable);
+                        startActivityForResult(editActIntent, 1);
+                    }
+                });
+        AlertDialog alertDialog2 = alertDialog.create();
         alertDialog.show();
     }
-/*
-    private void saveBitmap(Bitmap bitmap) {
-        // save bitmap to cache directory
-        try {
-            File cachePath = new File(this.getCacheDir(), "images");
-            cachePath.mkdirs(); // don't forget to make the directory
-            FileOutputStream stream = new FileOutputStream(cachePath + "/image.png"); // overwrites this image every time
-            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
-            stream.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }*/
 }
