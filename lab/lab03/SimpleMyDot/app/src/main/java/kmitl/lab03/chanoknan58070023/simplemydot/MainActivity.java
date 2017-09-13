@@ -1,16 +1,26 @@
 package kmitl.lab03.chanoknan58070023.simplemydot;
 
+import android.content.ActivityNotFoundException;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
+import android.net.Uri;
+import android.os.Environment;
+import android.provider.MediaStore;
+import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.IOException;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
@@ -19,6 +29,8 @@ import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dots;
 import kmitl.lab03.chanoknan58070023.simplemydot.view.DotView;
+
+import static kmitl.lab03.chanoknan58070023.simplemydot.R.id.dotView;
 
 public class MainActivity extends AppCompatActivity implements Dots.OnDotsChangeListener, DotView.OnDotViewClickListener {
 
@@ -39,7 +51,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Button btnShare = (Button) findViewById(R.id.share);
+        Button btnShare = (Button) findViewById(R.id.share); //Share Button
         Button btnClearDot = (Button) findViewById(R.id.clearDot);
         Button btnOpenActivity = (Button) findViewById(R.id.OpenActivity); //Binding Button
         final DotSerealizable dotSerealizable = new DotSerealizable();
@@ -48,8 +60,29 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         dotSerealizable.setColor(Color.RED);
         dotSerealizable.setRadius(30);
 
+        btnShare.setOnClickListener(new View.OnClickListener() { //When clicked share button
+            @Override
+            public void onClick(View v) {
+                bitmap = dotView.createBitmapFromView(dotView);
+                dotView.saveBitmap(bitmap);
+                File imagePath = new File(getCacheDir(), "images");
+                File newFile = new File(imagePath, "image.png");
+                Uri contentUri = FileProvider.getUriForFile(context, "kmitl.lab03.chanoknan58070023.simplemydot.fileprovider", newFile); //get path from package internal
+                if (contentUri != null) {
+                    Intent intent = new Intent();
+                    intent.setAction(Intent.ACTION_SEND);
+                    intent.addFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+                    intent.setDataAndType(contentUri, getContentResolver().getType(contentUri));
+                    intent.putExtra(Intent.EXTRA_STREAM, contentUri);
+                    startActivity(Intent.createChooser(intent, "Share to app"));
+                }
+            }
 
-        btnClearDot.setOnClickListener(new View.OnClickListener() {
+        });
+
+        btnClearDot.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
                 listDot.clearAll();
@@ -57,15 +90,20 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
             }
         });
 
-        dotView = (DotView) findViewById(R.id.dotView);
+        dotView = (DotView)
+                findViewById(R.id.dotView);
         dotView.setOnDotViewClickListener(this);
 
-        listDot = new Dots();
+        listDot = new
+
+                Dots();
         listDot.setListener(this);
 
         final DotPacelable dotPacelable = new DotPacelable(150, 150, 50);
 
-        btnOpenActivity.setOnClickListener(new View.OnClickListener() {
+        btnOpenActivity.setOnClickListener(new View.OnClickListener()
+
+        {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(MainActivity.this, SecondActivity.class);
@@ -125,4 +163,17 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         });
         alertDialog.show();
     }
+/*
+    private void saveBitmap(Bitmap bitmap) {
+        // save bitmap to cache directory
+        try {
+            File cachePath = new File(this.getCacheDir(), "images");
+            cachePath.mkdirs(); // don't forget to make the directory
+            FileOutputStream stream = new FileOutputStream(cachePath + "/image.png"); // overwrites this image every time
+            bitmap.compress(Bitmap.CompressFormat.PNG, 100, stream);
+            stream.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }*/
 }
