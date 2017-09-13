@@ -38,7 +38,7 @@ public class EditDot extends AppCompatActivity {
     public void alertDialog() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(
                 this);
-        alertDialogBuilder.setTitle("What you want to edit?");
+        alertDialogBuilder.setTitle("What do you want?"); //Text when edit window show up
         alertDialogBuilder
                 .setMessage("")
                 .setCancelable(false)
@@ -47,7 +47,11 @@ public class EditDot extends AppCompatActivity {
                         colorPicker();
                     }
                 })
-        ;
+                .setNegativeButton("Edit Size", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        seekBar();
+                    }
+                });
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
@@ -72,5 +76,53 @@ public class EditDot extends AppCompatActivity {
             }
         });
     }
+
+    public void seekBar() {
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        final DotPacelable dotParcelable = getIntent().getParcelableExtra("dotParcelable");
+        alert.setTitle("Change Dot Size");
+        alert.setCancelable(false);
+        LinearLayout linear = new LinearLayout(this);
+        linear.setOrientation(LinearLayout.VERTICAL);
+        final TextView text = new TextView(this);
+        text.setPadding(500, 50, 0, 50);
+        text.setText("Radius: " + dotParcelable.getRadius());
+        final SeekBar seek = new SeekBar(this);
+        seek.setBackgroundColor(Color.BLACK);
+        seek.setMax(150); //Max radius
+        seek.setProgress(dotParcelable.getRadius());
+        seek.setKeyProgressIncrement(1);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                text.setText("Radius: " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+        linear.addView(text);
+        linear.addView(seek);
+        alert.setView(linear);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                final DotPacelable reDotParcelable = new DotPacelable(dotParcelable.getDotPosition());
+                reDotParcelable.setRadius(seek.getProgress());
+                Intent returnIntent = new Intent(EditDot.this, MainActivity.class);
+                returnIntent.putExtra("reDotParcelable", reDotParcelable);
+                setResult(2, returnIntent);
+                Toast.makeText(getApplicationContext(), "Radius Changed!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+        alert.show();
+    }
+
 
 }

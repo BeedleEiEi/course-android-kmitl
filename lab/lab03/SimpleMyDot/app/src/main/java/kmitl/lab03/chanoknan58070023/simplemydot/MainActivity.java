@@ -118,6 +118,8 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
             DotPacelable dotParcelable = data.getParcelableExtra("reDotParcelable");
             if (resultCode == Activity.RESULT_OK) {
                 listDot.getAllDot().get(dotParcelable.getDotPosition()).setColor(dotParcelable.getColor());
+            } else {
+                listDot.getAllDot().get(dotParcelable.getDotPosition()).setRadius(dotParcelable.getRadius());
             }
         }
     }
