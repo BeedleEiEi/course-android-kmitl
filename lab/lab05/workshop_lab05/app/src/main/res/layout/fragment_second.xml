@@ -1,0 +1,20 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beedle.lab.workshop_lab05.fragment.SecondFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:id="@+id/fragmentTextViewSecond"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:textSize="50dp"
+        android:gravity="center"
+        android:textColor="@color/colorPrimaryDark"
+        android:layout_gravity="center_vertical"
+        android:background="@color/colorAccent"
+        android:text="Second Page"
+        />
+
+</FrameLayout>

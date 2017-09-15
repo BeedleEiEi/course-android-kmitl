@@ -1,0 +1,19 @@
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="beedle.lab.workshop_lab05.fragment.ThirdFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+    android:id="@+id/fragmentTextViewThird"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+        android:background="@color/colorPrimary"
+    android:text="Third Page!!"
+    android:textSize="50dp"
+    android:gravity="center"
+    android:layout_gravity="center_vertical"
+    />
+
+</FrameLayout>
