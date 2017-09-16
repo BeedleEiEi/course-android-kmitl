@@ -11,20 +11,24 @@ import android.graphics.Bitmap;
 import android.graphics.Color;
 import android.media.MediaPlayer;
 import android.net.Uri;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.content.FileProvider;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.EventListener;
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
+import kmitl.lab03.chanoknan58070023.simplemydot.fragment.EditFragment;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.Dot;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
@@ -87,9 +91,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
         });
 
-        btnClearDot.setOnClickListener(new View.OnClickListener()
-
-        {
+        btnClearDot.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 listDot.clearAll();
@@ -153,13 +155,20 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         dotView.invalidate();
     }
 
+
     @Override
     public void onDotViewClicked(int x, int y) {
 
+        double time = dotView.getTime();
         this.positionDot = listDot.findDot(x, y);
         if (positionDot != -1) {
-            alertDialog(positionDot);
+            if (time < 550) {
+                //alertDialog(positionDot);
+                setFragment(positionDot);
+            }
+
         } else {
+
             Random rand = new Random();
             int centerX = x;
             int centerY = y;
@@ -168,6 +177,16 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
             listDot.addDot(dot);
         }
     }
+
+    public void setFragment(int position) {
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        fragmentManager.beginTransaction()
+                .replace(R.id.fragmentContainer, new EditFragment().newInstance(position, listDot))
+                .addToBackStack(null)
+                .commit();
+
+    }
+
 
     public void alertDialog(final int position) {
         AlertDialog.Builder alertDialog = new AlertDialog.Builder(

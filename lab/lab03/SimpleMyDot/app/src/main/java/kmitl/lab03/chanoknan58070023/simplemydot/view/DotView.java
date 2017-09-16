@@ -46,6 +46,12 @@ public class DotView extends View {
     private Context context = super.getContext();
     private OnDotViewClickListener onDotViewClickListener;
     private int positionDot = -1;
+    private double startTouch, stopTouch;
+    private double time;
+
+    public double getTime() {
+        return this.time;
+    }
 
     public interface OnDotViewClickListener {
         void onDotViewClicked(int x, int y);
@@ -78,18 +84,21 @@ public class DotView extends View {
         this.onDotViewClickListener = onDotViewClickListener;
     }
 
-
     @Override
     public boolean onTouchEvent(MotionEvent event) {
-        switch (event.getAction()) {
-            case MotionEvent.ACTION_DOWN:
-                this.onDotViewClickListener
-                        .onDotViewClicked(
-                                (int) event.getX(),
-                                (int) event.getY());
-                return true;
+        if (event.getAction() == MotionEvent.ACTION_DOWN) {
+            startTouch = event.getEventTime();
+            this.onDotViewClickListener
+                    .onDotViewClicked(
+                            (int) event.getX(),
+                            (int) event.getY());
+        }
+        if (event.getAction() == MotionEvent.ACTION_UP) {
+            stopTouch = event.getEventTime();
+            return true;
         }
         return false;
+
     }
 
     @Override
