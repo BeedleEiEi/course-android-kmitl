@@ -59,6 +59,9 @@ public class Dot {
     public void setColor() {
         this.randomColor();
     }
+    public void setColor(int color) {
+        this.color = color;
+    }
 
     public int getColor() {
         return this.color;
