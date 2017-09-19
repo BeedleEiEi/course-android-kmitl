@@ -117,7 +117,7 @@ public class EditDot extends AppCompatActivity {
                 Intent returnIntent = new Intent(EditDot.this, MainActivity.class);
                 returnIntent.putExtra("reDotParcelable", reDotParcelable);
                 setResult(2, returnIntent);
-                Toast.makeText(getApplicationContext(), "Radius Changed! " + reDotParcelable.getRadius(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "Radius Changed!", Toast.LENGTH_LONG).show();
                 finish();
             }
         });

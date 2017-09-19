@@ -129,7 +129,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) { //When response
         DotPacelable dotParcelable = data.getParcelableExtra("reDotParcelable");
-        Toast.makeText(getApplicationContext(), "RadiusUpdate " + dotParcelable.getRadius() + "Request Code == " + requestCode + "   result code == " + resultCode, Toast.LENGTH_LONG).show();
         if (resultCode == 2) {
 
             this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setRadius(dotParcelable.getRadius());
