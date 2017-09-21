@@ -1,11 +1,7 @@
 package kmitl.lab03.chanoknan58070023.simplemydot;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.content.Context;
-import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.res.AssetManager;
 import android.content.res.Resources;
 import android.graphics.Bitmap;
 import android.graphics.Color;
@@ -18,13 +14,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageButton;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import java.io.File;
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.util.EventListener;
+
 import java.util.Random;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.Activity.SecondActivity;
@@ -39,13 +31,8 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     final Context context = this;
     private DotView dotView;
-    private Dot dot;
     private Dots listDot;
-    private int color;
-    private int rad = 0;
     private int positionDot;
-    private int widthScreen = Resources.getSystem().getDisplayMetrics().widthPixels;
-    private int heightScreen = Resources.getSystem().getDisplayMetrics().heightPixels;
     private Bitmap bitmap;
 
 
@@ -135,8 +122,11 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         //Toast.makeText(getApplicationContext(), "RadiusUpdate" + dotParcelable.getRadius() + "Request Code == " + requestCode + "   result code == " + resultCode, Toast.LENGTH_LONG).show();
         if (resultCode == 2) {
             this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setRadius(dotParcelable.getRadius());
-        } else {
+        } else if (resultCode != 3) {
             this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setColor(dotParcelable.getColor());
+        } else {
+            this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setCenterX(dotParcelable.getCenterX());
+            this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setCenterY(dotParcelable.getCenterY());
         }
     }
 
@@ -149,13 +139,11 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         listDot.addDot(dot);
     }
 
-
     @Override
     public void onDotsChanged(Dots dots) {
         dotView.setDots(listDot);
         dotView.invalidate();
     }
-
 
     @Override
     public void onDotViewClicked(int x, int y) {

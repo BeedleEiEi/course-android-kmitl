@@ -9,6 +9,7 @@ import android.support.annotation.ColorInt;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.util.DisplayMetrics;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -23,6 +24,7 @@ import com.pes.androidmaterialcolorpickerdialog.ColorPickerCallback;
 import com.rarepebble.colorpicker.ColorPickerView;
 
 import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
+import kmitl.lab03.chanoknan58070023.simplemydot.view.DotView;
 
 public class EditDot extends AppCompatActivity {
     private DotPacelable dotPacelable;
@@ -50,6 +52,11 @@ public class EditDot extends AppCompatActivity {
                 .setNegativeButton("Edit Size", new DialogInterface.OnClickListener() {
                     public void onClick(DialogInterface dialog, int id) {
                         seekBar();
+                    }
+                })
+                .setNeutralButton("Edit XY", new DialogInterface.OnClickListener() {
+                    public void onClick(DialogInterface dialog, int id) {
+                        seekBar2();
                     }
                 });
         AlertDialog alertDialog = alertDialogBuilder.create();
@@ -124,5 +131,91 @@ public class EditDot extends AppCompatActivity {
         alert.show();
     }
 
+    public void seekBar2() {
+        DisplayMetrics displayMetrics = new DisplayMetrics();
+        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+
+        final AlertDialog.Builder alert = new AlertDialog.Builder(this);
+        final DotPacelable dotParcelable = getIntent().getParcelableExtra("dotParcelable");
+        alert.setTitle("Change Dot Position");
+        alert.setCancelable(false);
+        LinearLayout linear = new LinearLayout(this);
+        LinearLayout linear2 = new LinearLayout(this);
+
+        linear.setOrientation(LinearLayout.VERTICAL);
+        linear2.setOrientation(LinearLayout.VERTICAL);
+
+        final TextView text = new TextView(this);
+        final TextView text2 = new TextView(this);
+
+        text.setPadding(500, 50, 0, 50);
+        text.setText("PositionX: " + dotParcelable.getCenterX());
+
+        text2.setPadding(500, 80, 0, 50);
+        text2.setText("PositionY: " + dotParcelable.getCenterY());
+
+        final SeekBar seek2 = new SeekBar(this);
+        seek2.setPadding(100, 50, 50, 50);
+        seek2.setBackgroundColor(Color.GREEN);
+        seek2.setMax(displayMetrics.heightPixels); //Max radius
+        seek2.setProgress(dotParcelable.getCenterX());
+        seek2.setKeyProgressIncrement(1);
+        seek2.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                text.setText("Position X: " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        final SeekBar seek = new SeekBar(this);
+        seek.setBackgroundColor(Color.BLACK);
+        seek.setPadding(100, 50, 50, 50);
+        seek.setMax(displayMetrics.widthPixels); //Max radius
+        seek.setProgress(dotParcelable.getCenterY());
+        seek.setKeyProgressIncrement(1);
+        seek.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+            @Override
+            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                text.setText("Position Y: " + progress);
+            }
+
+            @Override
+            public void onStartTrackingTouch(SeekBar seekBar) {
+            }
+
+            @Override
+            public void onStopTrackingTouch(SeekBar seekBar) {
+
+            }
+        });
+
+        linear.addView(text);
+        linear.addView(text2);
+        linear.addView(seek);
+        linear.addView(seek2);
+        alert.setView(linear);
+        alert.setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int id) {
+                final DotPacelable reDotParcelable = new DotPacelable(dotParcelable.getDotPosition());
+                reDotParcelable.setCenterX(seek2.getProgress());
+                reDotParcelable.setCenterY(seek.getProgress());
+                Intent returnIntent = new Intent(EditDot.this, MainActivity.class);
+                returnIntent.putExtra("reDotParcelable", reDotParcelable);
+                setResult(3, returnIntent);
+                Toast.makeText(getApplicationContext(), "Position Changed!", Toast.LENGTH_LONG).show();
+                finish();
+            }
+        });
+        alert.show();
+    }
 
 }
