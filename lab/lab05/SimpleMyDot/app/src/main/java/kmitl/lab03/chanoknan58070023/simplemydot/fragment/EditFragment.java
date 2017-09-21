@@ -1,6 +1,5 @@
 package kmitl.lab03.chanoknan58070023.simplemydot.fragment;
 
-
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -25,7 +24,6 @@ import kmitl.lab03.chanoknan58070023.simplemydot.model.Dots;
  * A simple {@link Fragment} subclass.
  */
 public class EditFragment extends android.support.v4.app.Fragment {
-
 
     public EditFragment() {
         // Required empty public constructor
@@ -67,7 +65,7 @@ public class EditFragment extends android.support.v4.app.Fragment {
                 listDot.removeBy(position);
                 Toast.makeText(getContext(), "Deleted!", Toast.LENGTH_SHORT).show();
             }
-        })
+        }).setCancelable(true)
                 .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {

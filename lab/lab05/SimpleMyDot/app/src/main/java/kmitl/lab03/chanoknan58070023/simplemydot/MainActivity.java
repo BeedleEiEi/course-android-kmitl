@@ -53,16 +53,30 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        //Binding Fragment Buttons
+
+
+        //Binding
         Button btnShare = (Button) findViewById(R.id.share); //Share Button
         Button btnClearDot = (Button) findViewById(R.id.clearDot);
         Button btnOpenActivity = (Button) findViewById(R.id.OpenActivity); //Binding Button
+        ImageButton clickMe = (ImageButton) findViewById(R.id.clickMe);
+        listDot = new Dots();
+        listDot.setListener(this);
+        dotView = (DotView) findViewById(R.id.dotView);
+        dotView.setOnDotViewClickListener(this);
+
+        //Second Activity
+        final DotPacelable dotPacelable = new DotPacelable(150, 150, 50);
         final DotSerealizable dotSerealizable = new DotSerealizable();
         dotSerealizable.setCenterX(150);
         dotSerealizable.setCenterY(150);
         dotSerealizable.setColor(Color.RED);
         dotSerealizable.setRadius(30);
+        //
 
-        ImageButton clickMe = (ImageButton) findViewById(R.id.clickMe);
+
         clickMe.setOnClickListener(new View.OnClickListener() {
             final MediaPlayer mp = MediaPlayer.create(context, R.raw.allahu);
 
@@ -71,6 +85,7 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
                 mp.start();
             }
         });
+
         btnShare.setOnClickListener(new View.OnClickListener() { //When clicked share button
             @Override
             public void onClick(View v) {
@@ -99,16 +114,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
             }
         });
 
-        dotView = (DotView)
-                findViewById(R.id.dotView);
-        dotView.setOnDotViewClickListener(this);
-
-        listDot = new
-                Dots();
-        listDot.setListener(this);
-
-        final DotPacelable dotPacelable = new DotPacelable(150, 150, 50);
-
         btnOpenActivity.setOnClickListener(new View.OnClickListener()
 
         {
@@ -122,19 +127,15 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
                 //เริ่มเปลี่ยนหน้า และทำงานอยู่จนกว่าจะ Finish เพื่อกลับมาหน้าเดิม
             }
         });
-
-
     }
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) { //When response
         DotPacelable dotParcelable = data.getParcelableExtra("reDotParcelable");
-        Toast.makeText(getApplicationContext(), "RadiusUpdate " + dotParcelable.getRadius() + "Request Code == " + requestCode + "   result code == " + resultCode, Toast.LENGTH_LONG).show();
+        //Toast.makeText(getApplicationContext(), "RadiusUpdate" + dotParcelable.getRadius() + "Request Code == " + requestCode + "   result code == " + resultCode, Toast.LENGTH_LONG).show();
         if (resultCode == 2) {
-
             this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setRadius(dotParcelable.getRadius());
         } else {
-
             this.listDot.getAllDot().get(dotParcelable.getDotPosition()).setColor(dotParcelable.getColor());
         }
     }
@@ -158,7 +159,6 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
 
     @Override
     public void onDotViewClicked(int x, int y) {
-
         double time = dotView.getTime();
         this.positionDot = listDot.findDot(x, y);
         if (positionDot != -1) {
@@ -179,30 +179,4 @@ public class MainActivity extends AppCompatActivity implements Dots.OnDotsChange
         }
     }
 
-
-    public void alertDialog(final int position) {
-        AlertDialog.Builder alertDialog = new AlertDialog.Builder(
-                this);
-
-        alertDialog.setTitle("Select Action");
-        alertDialog.setMessage("Choose").setCancelable(true).setPositiveButton("Delete", new DialogInterface.OnClickListener() {
-            @Override
-            public void onClick(DialogInterface dialog, int which) {
-                //delete item
-                listDot.removeBy(position);
-                Toast.makeText(getApplicationContext(), "Deleted!", Toast.LENGTH_SHORT).show();
-            }
-        })
-                .setNegativeButton("Edit", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        final DotPacelable dotPacelable = new DotPacelable(positionDot, listDot.getAllDot().get(positionDot).getColor(), listDot.getAllDot().get(position).getRadius());
-                        Intent editActIntent = new Intent(MainActivity.this, EditDot.class);
-                        editActIntent.putExtra("dotParcelable", dotPacelable);
-                        startActivityForResult(editActIntent, 1);
-                    }
-                });
-        AlertDialog alertDialog2 = alertDialog.create();
-        alertDialog.show();
-    }
 }

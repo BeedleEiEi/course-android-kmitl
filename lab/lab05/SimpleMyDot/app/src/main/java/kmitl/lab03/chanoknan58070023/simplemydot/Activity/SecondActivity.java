@@ -1,14 +1,14 @@
 package kmitl.lab03.chanoknan58070023.simplemydot.Activity;
 
-import android.support.v7.app.AppCompatActivity;
-import android.os.Bundle;
-import android.view.View;
-import android.widget.Button;
-import android.widget.TextView;
+        import android.support.v7.app.AppCompatActivity;
+        import android.os.Bundle;
+        import android.view.View;
+        import android.widget.Button;
+        import android.widget.TextView;
 
-import kmitl.lab03.chanoknan58070023.simplemydot.R;
-import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
-import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
+        import kmitl.lab03.chanoknan58070023.simplemydot.R;
+        import kmitl.lab03.chanoknan58070023.simplemydot.model.DotPacelable;
+        import kmitl.lab03.chanoknan58070023.simplemydot.model.DotSerealizable;
 
 public class SecondActivity extends AppCompatActivity {
 
