@@ -2,11 +2,14 @@ package lab07.student58070023.lazyinstagram;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import lab07.student58070023.lazyinstagram.adapter.PostAdapter;
 import lab07.student58070023.lazyinstagram.api.LazyInstagramApi;
 import lab07.student58070023.lazyinstagram.api.UserProfile;
 import okhttp3.OkHttpClient;
@@ -15,7 +18,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import retrofit2.converter.scalars.ScalarsConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -24,6 +26,11 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getUserProfile("nature"); //เรียก method
+        PostAdapter postAdapter = new PostAdapter(this);
+
+        RecyclerView recyclerView = findViewById(R.id.list); //bind list view
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setAdapter(postAdapter); // set adapter
     }
 
 
