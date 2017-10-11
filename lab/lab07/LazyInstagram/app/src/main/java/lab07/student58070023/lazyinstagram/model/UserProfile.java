@@ -1,4 +1,6 @@
-package lab07.student58070023.lazyinstagram.api;
+package lab07.student58070023.lazyinstagram.model;
+
+import java.util.List;
 
 /**
  * Created by student on 10/6/2017 AD.
@@ -10,9 +12,9 @@ public class UserProfile {
     private int following;
     private boolean isFollow;
     private int post;
-    private String[] posts;
     private String urlProfile;
     private String user;
+    private List<UserPosts> posts;
 
     public UserProfile(){
 
@@ -74,11 +76,11 @@ public class UserProfile {
         this.user = user;
     }
 
-    public String[] getPosts(String s) {
+    public List<UserPosts> getPosts() {
         return posts;
     }
 
-    public void setPosts(String[] posts) {
+    public void setPosts(List<UserPosts> posts) {
         this.posts = posts;
     }
 }

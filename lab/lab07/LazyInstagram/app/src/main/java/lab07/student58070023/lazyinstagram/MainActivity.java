@@ -4,14 +4,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.View;
+import android.widget.ArrayAdapter;
+import android.widget.ImageButton;
 import android.widget.ImageView;
+import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.ArrayList;
+
 import lab07.student58070023.lazyinstagram.adapter.PostAdapter;
 import lab07.student58070023.lazyinstagram.api.LazyInstagramApi;
-import lab07.student58070023.lazyinstagram.api.UserProfile;
+import lab07.student58070023.lazyinstagram.model.UserPosts;
+import lab07.student58070023.lazyinstagram.model.UserProfile;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -20,22 +27,29 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity {
+    private PostAdapter postAdapter;
+    private UserProfile userProfile;
+    public ImageButton profileChange;
+    private ArrayList<String> account = new ArrayList<>();
+    private Spinner dropDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        profileChange = findViewById(R.id.profileChange);
         setContentView(R.layout.activity_main);
         getUserProfile("nature"); //เรียก method
-        PostAdapter postAdapter = new PostAdapter(this);
-
+        this.postAdapter = new PostAdapter(this);
         RecyclerView recyclerView = findViewById(R.id.list); //bind list view
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(postAdapter); // set adapter
+
+
     }
 
 
+    private void getUserProfile(String userName) {
 
-    private void getUserProfile(String userName){
         OkHttpClient client = new OkHttpClient.Builder().build();
 
         Retrofit retrofit = new Retrofit.Builder()
@@ -50,8 +64,11 @@ public class MainActivity extends AppCompatActivity {
         call.enqueue(new Callback<UserProfile>() {
             @Override
             public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
-                if(response.isSuccessful()){
+                if (response.isSuccessful()) {
                     UserProfile userProfile = response.body();
+
+
+
                     display(userProfile);
                 }
             }
@@ -63,25 +80,30 @@ public class MainActivity extends AppCompatActivity {
         });
     }
 
-    private void display(UserProfile userProfile){
+    private void display(UserProfile userProfile) {
 
-        TextView textUser = (TextView) findViewById(R.id.textUser);
-        textUser.setText("@"+userProfile.getUser());
 
-        TextView textPost = (TextView) findViewById(R.id.textPost);
-        textPost.setText("Post\n"+userProfile.getPost());
 
-        TextView textFollower = (TextView) findViewById(R.id.textFollower);
-        textFollower.setText("Follower\n"+userProfile.getFollower());
+        this.postAdapter.setData(userProfile.getPosts());
 
-        TextView textFollwing = (TextView) findViewById(R.id.textFollowing);
-        textFollwing.setText("Following\n"+userProfile.getFollowing());
+        TextView textUser = findViewById(R.id.textUser);
+        textUser.setText("@" + userProfile.getUser());
 
-        TextView textBio = (TextView) findViewById(R.id.textBio);
-        textBio.setText(userProfile.getBio());
+        TextView textPost = findViewById(R.id.textPost);
+        textPost.setText("Post\n" + userProfile.getPost());
 
-        ImageView imageProfile = (ImageView) findViewById(R.id.imageProfile);
+        TextView textFollower = findViewById(R.id.textFollower);
+        textFollower.setText("Follower\n" + userProfile.getFollower());
+
+        TextView textFollwing = findViewById(R.id.textFollowing);
+        textFollwing.setText("Following\n" + userProfile.getFollowing());
+
+        TextView textBio = findViewById(R.id.textBio);
+        textBio.setText("Test: " + userProfile.getBio());
+
+        ImageView imageProfile = findViewById(R.id.imageProfile);
         Glide.with(this).load(userProfile.getUrlProfile()).into(imageProfile);
+
 
     }
 
