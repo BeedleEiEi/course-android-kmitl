@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
@@ -32,13 +33,15 @@ class Holder extends RecyclerView.ViewHolder {
         image = itemView.findViewById(R.id.imageView);
         textLike = itemView.findViewById(R.id.textLike);
         textComment = itemView.findViewById(R.id.textComment);
+    }
 
-
+    public void clearTextView() {
+        textComment.setText("");
+        textLike.setText("");
     }
 }
 
 public class PostAdapter extends RecyclerView.Adapter<Holder> {
-
     private Context context;
     private List<UserPosts> data;
 
@@ -46,6 +49,7 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
     public PostAdapter(Context context) {
         this.context = context;
         this.data = new ArrayList<>();
+
 
     }
 
@@ -58,6 +62,10 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
 
     public void setData(List<UserPosts> data) {
         this.data = data;
+    }
+
+    public void clearData() {
+        data.clear();
 
     }
 
@@ -68,6 +76,7 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
         LayoutInflater inflater = LayoutInflater.from(parent.getContext()); //สร้าง view เพื่อยัดลง holder
         View itemView = inflater.inflate(R.layout.post_item, null, false);
         Holder holder = new Holder(itemView);
+
         return holder;
     }
 
@@ -76,12 +85,11 @@ public class PostAdapter extends RecyclerView.Adapter<Holder> {
         ImageView image = holder.image;
         TextView textLike = holder.textLike;
         TextView textComment = holder.textComment;
-
         String imageUrl = data.get(position).getUrl();
         Glide.with(context).load(imageUrl).into(image); //load data มาใส่ image
+
         textLike.setText("Like: " + Integer.toString(data.get(position).getLike()));
         textComment.setText("Comment: " + Integer.toString(data.get(position).getComment()));
-
 
     }
 

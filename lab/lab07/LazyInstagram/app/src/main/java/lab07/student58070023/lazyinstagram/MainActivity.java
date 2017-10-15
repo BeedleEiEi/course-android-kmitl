@@ -5,15 +5,19 @@ import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
+import android.widget.SpinnerAdapter;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import lab07.student58070023.lazyinstagram.adapter.PostAdapter;
 import lab07.student58070023.lazyinstagram.api.LazyInstagramApi;
@@ -29,29 +33,65 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class MainActivity extends AppCompatActivity {
     private PostAdapter postAdapter;
     private UserProfile userProfile;
-    public ImageButton profileChange;
-    private ArrayList<String> account = new ArrayList<>();
+    private ArrayAdapter<String> adapter;
+    private String accountName = "android";
     private Spinner dropDown;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        profileChange = findViewById(R.id.profileChange);
         setContentView(R.layout.activity_main);
-        getUserProfile("nature"); //เรียก method
+        getUserProfile("android"); //เรียก method
         this.postAdapter = new PostAdapter(this);
+        dropDown = findViewById(R.id.dropDown);
         RecyclerView recyclerView = findViewById(R.id.list); //bind list view
         recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
         recyclerView.setAdapter(postAdapter); // set adapter
+        setAccount(); //set Account to Spinner
+        addListenerOnSpinnerItemSelectionr();
 
+    }
 
+    private void setAccount() {
+        List<String> list = new ArrayList<String>();
+        list.add("android");
+        list.add("cartoon");
+        list.add("nature");
+
+        adapter = new ArrayAdapter<String>(this, R.layout.support_simple_spinner_dropdown_item, list);
+        adapter.setDropDownViewResource(R.layout.support_simple_spinner_dropdown_item); //ให้ adapter เก็บ dropdown
+        dropDown.setAdapter(adapter); //ให้ spinner เก็บ dropdown
+    }
+
+    public void addListenerOnSpinnerItemSelectionr() {
+        dropDown.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                accountName = parent.getItemAtPosition(position).toString(); //assign account name to selected account
+                Toast.makeText(parent.getContext(),
+                        "You selected : " + parent.getItemAtPosition(position).toString(),
+                        Toast.LENGTH_SHORT).show();
+                updateAccount();
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+    }
+
+    private void updateAccount() {
+        postAdapter.clearData();
+        getUserProfile(accountName);
+        RecyclerView recyclerView = findViewById(R.id.list); //bind list view
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
+        recyclerView.setAdapter(postAdapter); // set adapter
     }
 
 
     private void getUserProfile(String userName) {
-
         OkHttpClient client = new OkHttpClient.Builder().build();
-
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl(LazyInstagramApi.BASE_URL).client(client)
                 .addConverterFactory(GsonConverterFactory.create())
@@ -59,16 +99,12 @@ public class MainActivity extends AppCompatActivity {
         LazyInstagramApi lazyInstagramApi =
                 retrofit.create(LazyInstagramApi.class); //Factory Design Pattern สร้าง obj จาก innterface
 
-
         Call<UserProfile> call = lazyInstagramApi.getProfile(userName);
         call.enqueue(new Callback<UserProfile>() {
             @Override
             public void onResponse(Call<UserProfile> call, Response<UserProfile> response) {
                 if (response.isSuccessful()) {
                     UserProfile userProfile = response.body();
-
-
-
                     display(userProfile);
                 }
             }
@@ -81,9 +117,6 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void display(UserProfile userProfile) {
-
-
-
         this.postAdapter.setData(userProfile.getPosts());
 
         TextView textUser = findViewById(R.id.textUser);
