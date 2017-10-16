@@ -4,165 +4,221 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:configChanges="orientation|screenSize"
     tools:context="lab07.student58070023.lazyinstagram.MainActivity">
 
-    <TextView
-        android:id="@+id/bodyBG"
-        android:layout_width="0dp"
-        android:layout_height="365dp"
-        android:layout_marginBottom="8dp"
+    <LinearLayout
+        android:layout_width="240dp"
+        android:layout_height="51dp"
         android:layout_marginEnd="8dp"
-        android:layout_marginLeft="8dp"
+        android:layout_marginLeft="98dp"
         android:layout_marginRight="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="8dp"
-        android:background="@color/colorPrimary"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:layout_marginStart="98dp"
+        android:layout_marginTop="140dp"
+        android:orientation="vertical"
+        android:weightSum="1"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0" />
+        app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
-    <TextView
-        android:id="@+id/textUser"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginTop="16dp"
-        android:text="UserName"
-        app:layout_constraintHorizontal_bias="0.04"
-        app:layout_constraintLeft_toRightOf="@+id/imageProfile"
-        app:layout_constraintRight_toRightOf="@+id/bodyBG"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        <TextView
+            android:id="@+id/textBio"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:layout_weight="0.29"
+            android:gravity="center"
+            android:text="The official Instagram for Android!!!."
+            app:layout_constraintBottom_toTopOf="@+id/bodyBG"
+            app:layout_constraintHorizontal_bias="0.844"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintRight_toRightOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.79" />
+    </LinearLayout>
 
-    <TextView
-        android:id="@+id/textPost"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Post\n10"
-        app:layout_constraintLeft_toRightOf="@+id/imageProfile"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/bodyBG"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"
-        app:layout_constraintHorizontal_bias="0.033"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/textFollowing"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Following\n1"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"
-        app:layout_constraintHorizontal_bias="0.44"
-        app:layout_constraintLeft_toRightOf="@+id/imageProfile"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
 
-    <TextView
-        android:id="@+id/textFollower"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Follower\n100000"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="48dp"
-        app:layout_constraintHorizontal_bias="0.895"
-        app:layout_constraintLeft_toRightOf="@+id/imageProfile"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+      <TextView
+          android:id="@+id/bodyBG"
+          android:layout_width="385dp"
+          android:layout_height="322dp"
+          android:layout_marginBottom="8dp"
+          android:layout_marginEnd="8dp"
+          android:layout_marginLeft="8dp"
+          android:layout_marginRight="8dp"
+          android:layout_marginStart="8dp"
+          android:layout_marginTop="8dp"
+          android:background="@color/colorPrimary"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          app:layout_constraintVertical_bias="1.0"
+          tools:layout_editor_absoluteY="181dp"
+          tools:layout_editor_absoluteX="-3dp"
+          app:layout_constraintHorizontal_bias="0.4" />
 
-    <TextView
-        android:id="@+id/textBio"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="The official Instagram for Android!!!."
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:gravity="center"
-        app:layout_constraintHorizontal_bias="0.844"
-        app:layout_constraintVertical_bias="0.79"
-        app:layout_constraintBottom_toTopOf="@+id/bodyBG"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <ImageView
-        android:id="@+id/imageProfile"
-        android:layout_width="107dp"
-        android:layout_height="113dp"
-        app:srcCompat="@android:drawable/sym_def_app_icon"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/bodyBG"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/bodyBG"
-        app:layout_constraintBottom_toBottomOf="@+id/bodyBG"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintVertical_bias="0.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
-
-    <android.support.v7.widget.RecyclerView
-        android:id="@+id/list"
-        android:layout_width="0dp"
-        android:layout_height="365dp"
-        android:layout_marginBottom="8dp"
-        android:layout_marginLeft="8dp"
+    <Spinner
+        android:id="@+id/dropDown"
+        android:layout_width="48dp"
+        android:layout_height="31dp"
+        android:layout_marginEnd="8dp"
         android:layout_marginRight="8dp"
         android:layout_marginTop="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
+        android:spinnerMode="dropdown"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="1.0"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:layout_constraintTop_toTopOf="parent">
+
+    </Spinner>
 
     <ImageView
         android:id="@+id/profileChange"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@android:drawable/ic_menu_myplaces"
-        android:layout_marginRight="8dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="7dp"
         app:layout_constraintRight_toRightOf="parent"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintHorizontal_bias="0.943"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="8dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp" />
+        app:srcCompat="@android:drawable/ic_menu_myplaces" />
 
-    <Spinner
-        android:id="@+id/dropDown"
-        android:spinnerMode="dropdown"
-        android:layout_width="0dp"
+    <Button
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="@+id/profileChange"
-        android:layout_marginTop="8dp"
-        android:layout_marginLeft="8dp"
-        app:layout_constraintLeft_toLeftOf="@+id/profileChange"
-        android:layout_marginRight="8dp"
-        app:layout_constraintRight_toRightOf="@+id/profileChange" />
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="46dp"
+        android:onClick="gridMode"
+        android:text="Grid mode"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.014" />
 
+    <Button
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginTop="46dp"
+        android:onClick="listMode"
+        android:text="List mode"
+        android:textSize="12dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.132" />
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="362dp"
+        android:layout_height="310dp"
+        android:layout_marginBottom="34dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="389dp"
+        android:layout_height="216dp"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginStart="8dp"
+        android:weightSum="3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.476"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.0">
+
+        <ImageView
+            android:id="@+id/imageProfile"
+            android:layout_width="107dp"
+            android:layout_height="113dp"
+            android:layout_marginBottom="8dp"
+            android:layout_marginEnd="8dp"
+            android:layout_marginLeft="8dp"
+            android:layout_marginRight="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            app:layout_constraintBottom_toBottomOf="@+id/bodyBG"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintLeft_toLeftOf="@+id/bodyBG"
+            app:layout_constraintRight_toRightOf="@+id/bodyBG"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.0"
+            app:srcCompat="@android:drawable/sym_def_app_icon" />
+
+        <LinearLayout
+            android:layout_width="86dp"
+            android:layout_height="match_parent"
+            android:layout_weight="0.98"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textUser"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="16dp"
+                android:text="UserName"
+                app:layout_constraintHorizontal_bias="0.04"
+                app:layout_constraintLeft_toRightOf="@+id/imageProfile"
+                app:layout_constraintRight_toRightOf="@+id/bodyBG"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textPost"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="8dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginStart="8dp"
+                android:layout_marginTop="48dp"
+                android:text="Post\n10"
+                app:layout_constraintHorizontal_bias="0.033"
+                app:layout_constraintLeft_toRightOf="@+id/imageProfile"
+                app:layout_constraintRight_toRightOf="@+id/bodyBG"
+                app:layout_constraintTop_toTopOf="parent" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="86dp"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/textFollowing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:text="Following\n1" />
+
+            <TextView
+                android:id="@+id/textFollower"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="Follower\n100000" />
+
+        </LinearLayout>
+
+    </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>

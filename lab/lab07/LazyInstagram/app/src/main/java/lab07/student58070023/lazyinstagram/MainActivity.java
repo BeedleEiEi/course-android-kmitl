@@ -3,14 +3,13 @@ package lab07.student58070023.lazyinstagram;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.GridLayoutManager;
+import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.Spinner;
-import android.widget.SpinnerAdapter;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,7 +20,6 @@ import java.util.List;
 
 import lab07.student58070023.lazyinstagram.adapter.PostAdapter;
 import lab07.student58070023.lazyinstagram.api.LazyInstagramApi;
-import lab07.student58070023.lazyinstagram.model.UserPosts;
 import lab07.student58070023.lazyinstagram.model.UserProfile;
 import okhttp3.OkHttpClient;
 import retrofit2.Call;
@@ -36,19 +34,18 @@ public class MainActivity extends AppCompatActivity {
     private ArrayAdapter<String> adapter;
     private String accountName = "android";
     private Spinner dropDown;
+    private RecyclerView recyclerView;
+    private String layoutType = "grid";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         getUserProfile("android"); //เรียก method
-        this.postAdapter = new PostAdapter(this);
         dropDown = findViewById(R.id.dropDown);
-        RecyclerView recyclerView = findViewById(R.id.list); //bind list view
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        recyclerView.setAdapter(postAdapter); // set adapter
         setAccount(); //set Account to Spinner
         addListenerOnSpinnerItemSelectionr();
+
 
     }
 
@@ -82,11 +79,10 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateAccount() {
-        postAdapter.clearData();
+        if (postAdapter != null) {
+            postAdapter.clearData();
+        }
         getUserProfile(accountName);
-        RecyclerView recyclerView = findViewById(R.id.list); //bind list view
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
-        recyclerView.setAdapter(postAdapter); // set adapter
     }
 
 
@@ -117,6 +113,9 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void display(UserProfile userProfile) {
+
+        postAdapter = new PostAdapter(this);
+        postAdapter.setLayoutType(layoutType);
         this.postAdapter.setData(userProfile.getPosts());
 
         TextView textUser = findViewById(R.id.textUser);
@@ -137,8 +136,23 @@ public class MainActivity extends AppCompatActivity {
         ImageView imageProfile = findViewById(R.id.imageProfile);
         Glide.with(this).load(userProfile.getUrlProfile()).into(imageProfile);
 
+        recyclerView = findViewById(R.id.list);
+        if (layoutType.equals("grid")) {
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 3));
 
+        } else {
+            recyclerView.setLayoutManager(new LinearLayoutManager(this));
+        }
+        recyclerView.setAdapter(postAdapter);
     }
 
+    public void listMode(View view) {
+        this.layoutType = "list";
+        getUserProfile(accountName);
+    }
 
+    public void gridMode(View view) {
+        this.layoutType = "grid";
+        getUserProfile(accountName);
+    }
 }
