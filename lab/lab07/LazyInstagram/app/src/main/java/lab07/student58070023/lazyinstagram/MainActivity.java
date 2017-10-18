@@ -81,8 +81,9 @@ public class MainActivity extends AppCompatActivity {
     private void updateAccount() {
         if (postAdapter != null) {
             postAdapter.clearData();
+            getUserProfile(accountName);
         }
-        getUserProfile(accountName);
+
     }
 
 
@@ -117,6 +118,7 @@ public class MainActivity extends AppCompatActivity {
         postAdapter = new PostAdapter(this);
         postAdapter.setLayoutType(layoutType);
         this.postAdapter.setData(userProfile.getPosts());
+        //updateAccount();
 
         TextView textUser = findViewById(R.id.textUser);
         textUser.setText("@" + userProfile.getUser());
