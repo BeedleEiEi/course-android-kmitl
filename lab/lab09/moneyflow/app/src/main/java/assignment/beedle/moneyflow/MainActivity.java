@@ -12,6 +12,7 @@ import android.support.v7.widget.RecyclerView;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 
@@ -32,13 +33,9 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         userDB = Room.databaseBuilder(this, UserDB.class, "RECORD").build();
         intent = new Intent(this, Add.class);
-
         Button addBtn = findViewById(R.id.addRecordBtn);
         addBtn.setOnClickListener(this);
-
         total = findViewById(R.id.totalIncomeTv);
-
-
         recordInfoAdapter = new UserInfoAdapter();
         recordInfoAdapter.setContext(this);
         recordInfoAdapter.setListener(this);
@@ -62,7 +59,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             @Override
             protected void onPostExecute(List<UserInfo> recordInfos) {
                 recordInfoAdapter.setUserInfoList(recordInfos);
-                System.out.println("size :" + recordInfos.size());
                 recordInfoAdapter.notifyDataSetChanged();
 
                 float totalBalance = 0;
@@ -80,16 +76,16 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 } catch (ArithmeticException e) {
                     ratio = 0;
                 }
-                System.out.println(ratio);
                 if (ratio > 0.5) {
-                    total.setTextColor(Color.GREEN);
-                    System.out.println(ratio);
+                    //total.setTextColor(Color.GREEN);
+                    total.setBackgroundColor(Color.GREEN);
+                    Toast.makeText(MainActivity.this, "Just Added", Toast.LENGTH_SHORT).show();
                 } else if (ratio >= 0.25) {
-                    total.setTextColor(Color.YELLOW);
-                    System.out.println("25-50");
+                    total.setBackgroundColor(Color.YELLOW);
+                    Toast.makeText(MainActivity.this, "Pretty low money", Toast.LENGTH_SHORT).show();
                 } else {
-                    total.setTextColor(Color.RED);
-                    System.out.println("< 25");
+                    total.setBackgroundColor(Color.RED);
+                    Toast.makeText(MainActivity.this, "You're in debt I guess", Toast.LENGTH_SHORT).show();
                 }
                 total.setText(totalBalance + "");
             }

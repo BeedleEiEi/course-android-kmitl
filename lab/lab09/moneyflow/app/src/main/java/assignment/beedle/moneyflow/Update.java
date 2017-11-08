@@ -3,11 +3,13 @@ package assignment.beedle.moneyflow;
 import android.app.Activity;
 import android.arch.persistence.room.Room;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.Toast;
 
@@ -20,6 +22,8 @@ public class Update extends Activity implements View.OnClickListener {
     private EditText desc, amount;
     private UserDB userDB;
     private UserInfo recordInfo;
+    private RadioButton income;
+    private RadioButton outcome;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,6 +43,8 @@ public class Update extends Activity implements View.OnClickListener {
 
         desc.setText(recordInfo.getDetail());
         amount.setText(String.valueOf((int) recordInfo.getAmount()));
+        income = findViewById(R.id.income_RBtn);
+        outcome = findViewById(R.id.outcome_RBtn);
 
     }
 
@@ -108,4 +114,5 @@ public class Update extends Activity implements View.OnClickListener {
 
     {
     }
+
 }
